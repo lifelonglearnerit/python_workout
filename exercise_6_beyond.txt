@@ -1,0 +1,28 @@
+Conventional machine-learning techniques were limited in their
+ability to process natural data in their raw form. For decades, constructing a pattern-recognition or machine-learning system required
+careful engineering and considerable domain expertise to design a feature extractor that transformed the raw data (such as the pixel values
+of an image) into a suitable internal representation or feature vector
+from which the learning subsystem, often a classifier, could detect or
+classify patterns in the input.
+Representation learning is a set of methods that allows a machine to
+be fed with raw data and to automatically discover the representations
+needed for detection or classification. Deep-learning methods are
+representation-learning methods with multiple levels of representation, obtained by composing simple but non-linear modules that each
+transform the representation at one level (starting with the raw input)
+into a representation at a higher, slightly more abstract level. With the
+composition of enough such transformations, very complex functions
+can be learned. For classification tasks, higher layers of representation
+amplify aspects of the input that are important for discrimination and
+suppress irrelevant variations. An image, for example, comes in the
+form of an array of pixel values, and the learned features in the first
+layer of representation typically represent the presence or absence of
+edges at particular orientations and locations in the image. The second
+layer typically detects motifs by spotting particular arrangements of
+edges, regardless of small variations in the edge positions. The third
+layer may assemble motifs into larger combinations that correspond
+to parts of familiar objects, and subsequent layers would detect objects
+as combinations of these parts. The key aspect of deep learning is that
+these layers of features are not designed by human engineers: they
+are learned from data using a general-purpose learning procedure.
+Deep learning is making major advances in solving problems that
+have resisted the best attempts of the artificial intelligence community for many years. It has turned out to be very good at discovering
