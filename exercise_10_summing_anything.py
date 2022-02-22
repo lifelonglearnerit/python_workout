@@ -6,15 +6,16 @@ work with numbers, strings, lists, and tuples, but not sets and dicts)
 """
 # my solution
 def mysum(*args):
-    result = args[0]
     if not args:
         return args
     else:
+        result = args[0]
         for i in args[1:]:
             result += i
         return result
 print(mysum([1,2,3,4,5], [50, 90], [0]))
 print(mysum())
+
 # Beyond the exercise:
 """"
 Write a function, mysum_bigger_than(), that works the same as mysum, except that 
@@ -25,3 +26,16 @@ work with any type and assumes that all of the arguments are of the same type. N
 > and < work on many different types in Python,not just on number; with strings, lists, and 
 tuples, it refers to their sort order.
 """
+def mysum_bigger_than(x, *args):
+    print('1:', args)
+    if not args:
+        return args
+    else:
+        bigger_than = [item for item in args if item > x]
+        result = bigger_than[0]
+        for i in bigger_than[1:]:
+            result += i
+        return result
+
+print(mysum_bigger_than(10, 5, 20, 30, 6))
+print(mysum_bigger_than('k', 'I', 'am', 'interested', 'in', 'learning', 'Python'))
