@@ -61,10 +61,12 @@ def sum_numeric(*args):
         try:
             num_sum.append(int(item))
         except ValueError:
+
             continue
     return sum(num_sum)
 
 
 print(sum_numeric(10, 20, 'a', '30', 'bcd'))
+
 
 
