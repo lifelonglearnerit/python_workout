@@ -69,5 +69,13 @@ def vowel_sort(string_list: list[str]) -> list[str]:
 
 print(vowel_sort(['uoi', 'u', 'uoiea', 'uo',  'uoie' ]))
 
+"""
+Given a list of lists, with each list containing zero or more numbers,
+sort by the sum of each inner list's numbers
+"""
+def sort_lists(list_of_lists: list[list]) -> list[list]:
+    return sorted(list_of_lists,
+                  key=lambda lst: sum(x for x in lst))  # sum elements will be applied to each element in list
 
+print(sort_lists([[1,2,3,4], [], [53], [34, 0.23]]))
 
