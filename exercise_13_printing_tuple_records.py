@@ -18,6 +18,7 @@ def format_sort_records(list_of_tuples: list[tuple]) -> list[str]:
     template = '{1:10} {0:10} {2:5.2f}'
     for person in sorted(list_of_tuples,
                          key=operator.itemgetter(1, 0)):
+        print(person)
         output.append(template.format(*person))
     return output
 
