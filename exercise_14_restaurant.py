@@ -150,5 +150,4 @@ def print_temperatures(before_after: list, text: str):
         for date in before_after:
             print(f'Temperature on {date}: {TEMP[date]} Celsius')
 
-
 get_temp()
