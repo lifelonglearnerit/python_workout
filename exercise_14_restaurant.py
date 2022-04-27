@@ -60,6 +60,7 @@ create a dict in which the keys are usernames and the values are passwords
 both represented as strings. Create a tiny login system, in which the user must 
 enter a username and password. If there is a match, then indicate that the user has 
 successfully logged in. If not, the refuse them entry 
+Version 1: without datetime module
 """
 USER_NAME = {'Tom': 'python_workout',
              'Putin': 'murderer'}
@@ -150,4 +151,67 @@ def print_temperatures(before_after: list, text: str):
         for date in before_after:
             print(f'Temperature on {date}: {TEMP[date]} Celsius')
 
-get_temp()
+#get_temp()
+
+"""
+Version 2 with date time module:
+https://docs.python.org/3/library/datetime.html
+"""
+from datetime import datetime
+from datetime import date
+
+temp_2 = {'1999-09-01': '26',
+          '2022-04-22': '19',
+          '2021-01-01': '5',
+          '2022-04-23': '17',
+          '2022-04-24': '13',
+          '2022-04-25': '14',
+          '2022-04-26': '14',
+          '2023-01-01': '-1'
+          }
+
+def to_datetime():
+    for key in temp_2.copy():
+        temp_2[date.fromisoformat(str(key))] = temp_2.pop(key)
+    return temp_2
+
+def get_temp_2():
+    to_datetime()
+    year = input('Enter year in format (YYYY): ')
+    month = input('Enter month in format (MM): ')
+    day = input('Enter day in format (DD): ')
+    user_date = '-'.join([x.strip(' .-+,;') for x in [year, month, day]])
+    user_date = date.fromisoformat(user_date)
+    print(f'Temperature on {user_date}: {temp_2[user_date]} Celsius')
+    for key, value in temp_2.items():
+        if key < user_date:
+
+            print(f'Temperature on {key}: {temp_2[key]}')
+        elif key > user_date:
+
+            print(f'Temperature on {key}: {temp_2[key]}')
+    print(temp_2)
+
+#get_temp_2()
+
+"""
+Define a dict whose keys are names of people in your family, and whose values
+are their birth dates, as represented by Python date objects. Ask the user 
+to enter the name of someone in your family, and have the program how many
+days old that person is.
+"""
+birth_dates = {'Pelagia': '1980-09-09',
+               'Antonina': '1922-08-23',
+               'Rozalia': '1939-01-01',
+               'Pulcheria': '1981-01-01',
+               'Emi': '1985-05-29',
+               'przyjazd': '2022-05-13'
+               }
+
+def check_days():
+    name = input('Enter the name of family member: ')
+    b_day = date.fromisoformat(birth_dates[name])
+    today = datetime.today().date()
+    #print(f'Today is {today}\n{(today - b_day).days} days passed since {name} was born on {b_day}')
+    print(f'Today is {today}\n{(b_day - today).days} do przyjazdu do mojej jedynej Ukochanej ')
+check_days()
