@@ -98,3 +98,36 @@ def run_all():
 
 run_all()
 
+
+# ------------------------------------BEYOND THE EXERCISE-----------------------------------------------
+
+"""
+Write a function, that takes an even number of arguments and returns a dict based on them. The even-indexed 
+arguments become the dict keys, while the odd-numbered arguments become the dict values. Thus, calling the 
+function with the arguments ('a', 1, 'b', 2) will result in the dict {'a': 1, 'b': 2} being returned 
+"""
+def dict_maker(*args):
+    even = list()
+    odd = list()
+    for idx, value in enumerate(args):
+        if idx % 2 == 0:
+            even.append(value)
+        else:
+            odd.append(value)
+    return dict(zip(even, odd))
+
+
+print(dict_maker('a', 1, 'b', 2))
+
+
+
+
+
+
+
+
+
+
+
+
+
