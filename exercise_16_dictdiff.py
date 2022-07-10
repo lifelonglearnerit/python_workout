@@ -81,6 +81,7 @@ def diffdict3(dict_1: dict, dict_2: dict) -> dict:
                          dict_2.get(key)]
     return diff
 
+
 # -------------------------------------------TESTING-------------------------------------------------
 
 
@@ -90,14 +91,15 @@ FUNCTIONS = {
     3: diffdict3
 }
 
+
 def run_all():
     for key in TESTS:
         for function in FUNCTIONS.values():
             print(f'----------------------{function}----------------------')
             print(test(function(DICTS[key[0]], DICTS[key[1]]), (key[0], key[1]), TESTS))
 
-run_all()
 
+run_all()
 
 # ------------------------------------BEYOND THE EXERCISE-----------------------------------------------
 
@@ -106,6 +108,8 @@ Write a function, that takes an even number of arguments and returns a dict base
 arguments become the dict keys, while the odd-numbered arguments become the dict values. Thus, calling the 
 function with the arguments ('a', 1, 'b', 2) will result in the dict {'a': 1, 'b': 2} being returned 
 """
+
+
 def dict_maker(*args):
     even = list()
     odd = list()
@@ -117,17 +121,47 @@ def dict_maker(*args):
     return dict(zip(even, odd))
 
 
-print(dict_maker('a', 1, 'b', 2))
+print(dict_maker('a', 1, 'b', 2, 'c', 3, 'd', 4, 'e', 5, 'f', 6))
+
+"""
+Write a function, dict_partition, that takes one dict (d) and a function (f) 
+as arguments. dict_partition will return two dicts, each containing key-value
+pairs from d. The decision regarding where to put each of the key-value pairs 
+will be made according to the output from f, which will be run on each key-value 
+pair in d. If f return True, then the key-value pair will be put in the first 
+output dict. If returns False, then the key-value pair it will be put in the 
+second output dict.
+"""
+
+mod_div = lambda x: x % 2 == 0
 
 
+def dict_partition2(d: Callable, f: Callable) -> tuple:
+    odd = {key: value for key, value in d.items() if f(value) == False}
+    even = {key: value for key, value in d.items() if f(value) == True}
+    return odd, even
 
 
+odd_dict, even_dict = dict_partition2(
+    dict_maker('a', 1, 'b', 2, 'c', 3, 'd', 4, 'e', 5, 'f', 6),
+    mod_div
+)
+print(f'odd_dict: {odd_dict}\neven_dict {even_dict}')
 
 
+"""
+The dict.update method merges two dicts. Write a function that takes any 
+number of dicts and returns a dict that reflects the combination of all of them.
+If the same key appears in more than one dict, then the most recently merged 
+dict's value should appear in the output
+"""
 
+def dict_updater(*args):
+    combination = dict()
+    for dictionary in args:
+        for key, value in dictionary.items():
+            if combination.get(key) is None:
+                combination.update({key: value})
+    return combination
 
-
-
-
-
-
+dict_updater(dict_maker('a', 1, 'b', 2, 'c', 3, 'd', 4, 'e', 5, 'f', 6), {'c': [3, None], 'ab': [None, 4]}, {'cd': [3, 4]})
