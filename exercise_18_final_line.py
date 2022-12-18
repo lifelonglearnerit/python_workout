@@ -85,10 +85,28 @@ test()
 # option 2 with generator
 
 def sum_columns_2(file_name: str) -> int:
-    return sum(
-        int(x.split()[0]) * int(x.split()[1])
-        for x in open(file_name).readlines()
-        if (x.split()[0].isdigit() and x.split()[1].isdigit())
-    )
+    with open(file_name) as f:
+        sum_cols = sum(
+            int(x.split()[0]) * int(x.split()[1])
+            for x in f.readlines()
+            if (x.split()[0].isdigit() and x.split()[1].isdigit())
+            )
+    return sum_cols
+
 
 print(sum_columns_2('test1.txt'))
+
+
+"""Read through a text file, line by line. Use da dict to kiip track of how many times 
+each vowel (a, e, i, o and u) appears in the file. Print the resulting tabulation"""
+
+def count_vowels(file_name: str) -> dict:
+    vowels: dict = {}
+    with open(file_name) as f:
+        for letter in f.read():
+            low_letter = letter.lower()
+            if low_letter in 'aeiou':
+                vowels[low_letter] = vowels.get(low_letter, 0) + 1
+    return vowels
+
+print(count_vowels('exercise_18_file.txt'))
