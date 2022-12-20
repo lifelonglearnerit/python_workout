@@ -21,3 +21,40 @@ def passwd_to_dict(file_name: str) -> dict:
     return user_id
 
 print(passwd_to_dict('exercise_19_file.txt'))
+
+# option 2 my solution
+def passwd_to_dict_2(file_name: str) -> dict:
+    user_id: dict = {}
+    with open(file_name, 'r') as f:
+        passwd = f.readlines()
+        for line in passwd:
+            line = line.split(':')
+            if not (line[0] == '' or '#' in line[0]):
+                user_id[line[0]] = line[2]
+    return user_id
+
+print(passwd_to_dict_2('exercise_19_file.txt'))
+
+
+# solution from book:
+def passwd_to_dict_3(file_name):
+    users = {}
+    with open(file_name) as passwd:
+        for line in passwd:
+            if not line.startswith(('#', '\n')):
+                user_info = line.split(':')
+                users[user_info[0]] = int(user_info[2])
+    return users
+
+print(passwd_to_dict_3('exercise_19_file.txt'))
+
+# Beyond the exercise
+"""Read though /etc/passwd, creating a dict in which user login shells (the final
+field on each line) are the keys. Each value will be a list of the users for whom
+that shell is defined as their login shell"""
+import re
+print(re.split(':|/','root:*:0:0::0:0:System Administrator:/var/root:/bin/sh'))
+
+def shell_login(file_name: str) -> dict:
+    pass
+
