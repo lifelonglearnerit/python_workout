@@ -55,6 +55,21 @@ that shell is defined as their login shell"""
 import re
 print(re.split(':|/','root:*:0:0::0:0:System Administrator:/var/root:/bin/sh'))
 
+# option 1 - iteration t
 def shell_login(file_name: str) -> dict:
-    pass
+    shell_log: dict = {}
+    key_tracker: list = []
+    with open(file_name) as passwd:
+        for line in passwd:
+            print('TO:',line)
+            if not line.startswith(('#', '\n')):
+                user_info = re.split(':|/', line)
+                if shell_log.get(user_info[-1].strip(), 0):
+                    shell_log[user_info[-1].strip()].append(user_info[0])
+                else:
+                    shell_log[user_info[-1].strip()] = [user_info[0]]
+
+    return shell_log
+
+print(shell_login('exercise_19_file.txt'))
 
